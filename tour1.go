@@ -7,6 +7,11 @@ import (
 	"strconv"
 )
 
+// for a N-square-per-side board, with <0,0> in one corner,
+// and <N,N> in the diagonally opposite corner, a knight can
+// make moves to squares with these <delta-x,delta-y> increments
+// to its coordinates. Some <x,y> positions might have incremented
+// coordinates that are "off the board" one side or another.
 var moveIncrements = [][2]int{
 	{-1, 2},
 	{1, 2},
@@ -18,6 +23,11 @@ var moveIncrements = [][2]int{
 	{1, -2},
 }
 
+// create a slice-of-slices of allowable moves for whatever
+// side-size of board the user chooses. This global variable
+// gets set so that allowableMoves[x][y] is a list of the
+// legal (on-the-board) board coordinates of a knight's possible
+// next positions.
 var allowableMoves [][][][2]int
 
 func main() {
@@ -36,23 +46,26 @@ func main() {
 		}
 	}
 
-	sofar := make([][2]int, n*n+1)
+	// stack of <x,y> positions of a knight during a potentially
+	// valid tour.
+	sofar := make([][2]int, n*n)
 
+	// Set the knight on every square of the board, then find
+	// all tours from that starting <x,y> coordinate.
 	for i := 0; i < n; i++ {
 		for j := 0; j < n; j++ {
 			sofar[0][0], sofar[0][1] = i, j
 			board[i][j] = true
-			tryMoves(1, i, j, board, n, sofar)
+			tryMoves(1, i, j, board, n*n, sofar)
 			board[i][j] = false
 		}
 	}
 }
 
-func tryMoves(ply int, a, b int, board [][]bool, sideSize int, sofar [][2]int) {
-	sz := sideSize * sideSize
+func tryMoves(ply int, a, b int, board [][]bool, boardSize int, sofar [][2]int) {
 
-	if ply == sz {
-		for i := 0; i < sz; i++ {
+	if ply == boardSize {
+		for i := 0; i < boardSize; i++ {
 			fmt.Printf("%d    %d %d\n", i, sofar[i][0], sofar[i][1])
 		}
 		os.Exit(0)
@@ -63,7 +76,7 @@ func tryMoves(ply int, a, b int, board [][]bool, sideSize int, sofar [][2]int) {
 		if !board[x][y] {
 			board[x][y] = true
 			sofar[ply][0], sofar[ply][1] = x, y
-			tryMoves(ply+1, x, y, board, sideSize, sofar)
+			tryMoves(ply+1, x, y, board, boardSize, sofar)
 			board[x][y] = false
 		}
 	}
