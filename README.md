@@ -28,16 +28,23 @@ If you want the unique tours, you have to filter the program's output.
 
 ## Program Design
 
+This is a brute-force backtracking algorithm that potentially
+finds all knight's tours of an N-by-N chess board.
+It does nothing fancy to avoid duplicate,
+rotationally symmetric, or mirror image tours.
+
 The program pre-calculates the `x,y` positions of every legal
 move for each square on a board.
 Boards can be arbitrarily-sized.
 
-The program iteratively puts a knight on each square of the board,
-the recursively finds all the tours that start on that square.
-The recursive function recieves the board so far,
+The program iteratively puts the knight on each square of the board,
+then recursively finds all the tours that start on that square.
+The recursive function receives the board so far,
 and the `x,y` position of the knight on that board.
 Squares of the board have a boolean annotation for whether or not
 that square has been visited.
+If the iteration reaches a depth equal to the number of squares
+on the board, the program found a tour.
 
 ## Analysis
 
