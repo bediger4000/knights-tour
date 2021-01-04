@@ -9,12 +9,22 @@ An implementation of the "knight's tour" puzzle.
 This is a simple Go program with no dependencies outside the
 standard Go packages.
 
+You invoke it with a single number,
+the size of a side of the chessboard.
+It prints tours to stdout.
+
 ```sh
 $ go build tour1.go
 $ ./tour1 5 | sort | uniq | wc -l
 1728
 $
 ```
+
+A 5-sided board is the only one that can be exhaustively
+searched for tours in any reasonable amount of time.
+
+The program prints out every tour it discovers in Go-fmt-package "%v" mode.
+If you want the unique tours, you have to filter the program's output.
 
 ## Program Design
 
