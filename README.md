@@ -40,3 +40,14 @@ Squares of the board have a boolean annotation for whether or not
 that square has been visited.
 
 ## Analysis
+
+I did this because my son was learning Python,
+and a "Knight's Tour" came up in his class.
+It seems pretty hard for a beginner-level problem,
+particularly if you do a variable size-of-board.
+
+Knight's tours aren't really enumerable for any worthwhile size of board.
+I mean, there are 1728 unique tours on a 5-by-5 board.
+
+This might be a worthwhile problem to do to educate yourself
+on backtracking solutions.
