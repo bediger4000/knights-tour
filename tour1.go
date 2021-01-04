@@ -41,17 +41,14 @@ func main() {
 	board := make([][]bool, n)
 	for i := 0; i < n; i++ {
 		board[i] = make([]bool, n)
-		for j := 0; j < n; j++ {
-			fmt.Printf("<%d,%d>  %v\n", i, j, allowableMoves[i][j])
-		}
 	}
 
-	// stack of <x,y> positions of a knight during a potentially
-	// valid tour.
 	sofar := make([][2]int, n*n)
 
-	// Set the knight on every square of the board, then find
-	// all tours from that starting <x,y> coordinate.
+	// Have to place the first knight on the board, since tryMoves uses
+	// the current position to determine which potential moves to look
+	// at next.  Find all tours from that starting <x,y> coordinate.
+
 	for i := 0; i < n; i++ {
 		for j := 0; j < n; j++ {
 			sofar[0][0], sofar[0][1] = i, j
@@ -64,11 +61,10 @@ func main() {
 
 func tryMoves(ply int, a, b int, board [][]bool, boardSize int, sofar [][2]int) {
 
+	// Found a tour, time to stop recursing.
 	if ply == boardSize {
-		for i := 0; i < boardSize; i++ {
-			fmt.Printf("%d    %d %d\n", i, sofar[i][0], sofar[i][1])
-		}
-		os.Exit(0)
+		fmt.Printf("%v\n", sofar)
+		return
 	}
 
 	for _, move := range allowableMoves[a][b] {
