@@ -4,6 +4,16 @@
 
 An implementation of the "knight's tour" puzzle.
 
+### Daily Coding Problem: Problem #962 [Hard]
+
+This problem was asked by Google.
+
+A knight's tour is a sequence of moves by a knight on a chessboard such
+that all squares are visited once.
+
+Given N,
+write a function to return the number of knight's tours on an N by N chessboard.
+
 ## Build and Run
 
 This is a simple Go program with no dependencies outside the
@@ -58,3 +68,24 @@ I mean, there are 1728 unique tours on a 5-by-5 board.
 
 This might be a worthwhile problem to do to educate yourself
 on backtracking solutions.
+
+## Interview Analysis
+
+Since knight's tour came up as a Daily Coding Problem,
+this seems like a take home type of question,
+probably for a senior developer type job.
+It's definitely too hard to do as a whiteboard problem in front of interviewers.
+
+There's probably a lot of ways to solve this,
+so the interviewer could look at nuance if the candidate gets a solution.
+If it's a take-home-problem, the interviewer should be prepared to see
+google-able solutions. Knight's tour is a really old problem.
+Perhaps the interviewer could use the candidate's solution as a jumping-of-point
+for discussion of program design, or pecularities of the programming language used,
+or design decisions.
+
+The [Daily Coding Problem book](https://www.amazon.com/Daily-Coding-Problem-exceptionally-interviews/dp/1793296634)
+could have used this as an example in Chapter 14, *Backtracking*.
+You can actually get solutions for smaller boards,
+where their example of "solving sudoku efficiently" isn't efficient,
+and probably doesn't find a solution in anything like reasonable time.
